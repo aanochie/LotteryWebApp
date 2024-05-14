@@ -1,7 +1,9 @@
 import csv
 from sqlalchemy import create_engine, MetaData, Table
-#from app import db
+from app import db
+from models import init_db
 
+init_db()
 engine = create_engine('sqlite:///lottery.db')
 connection = engine.connect()
 
@@ -10,6 +12,8 @@ connection = engine.connect()
 metadata = MetaData()
 metadata.reflect(bind=engine)
 print(metadata.tables.keys())
+# https://www.slingacademy.com/article/sqlalchemy-get-list-all-tables/#Basic_Example_Using_enginetable_names
+print(engine.table_names())
 table = Table('users', metadata, autoload_with=engine)
 
 query = connection.execute(table.select())
