@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="colum is-5 is-offset-4">
+        {# render 2 factor authentication page with qr code #}
+        <h3 class="title is-3">2-Factor Authentication Setup</h3>
+        <div class="box">
+            <p>To set up 2-factor authentication under the account name {{ email }},
+            scan the following QR code with your smartphone's authenticator app:</p>
+
+            <p><img src="{{ qrcode(uri, box_size=5, border=5) }}" alt="QR code"></p>
+            <p>Once set up, please go to the <a href="{{ url_for('users.login') }}"><u>Login</u></a> page</p>
+        </div>
+    </div>
+{% endblock %}
